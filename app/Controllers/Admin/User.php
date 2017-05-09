@@ -73,6 +73,11 @@ class User extends Controller
         die;
     }
 
+    public function get()
+    {
+        P(UserModel);
+    }
+
     public function page()
     {
         $pagination  = new Pagination();
@@ -89,17 +94,16 @@ class User extends Controller
         P($page);
     }
 
-    
     public function query()
     {
         $url_info['url']  = 'https://apist.baiqishi.com/services/decision';
-        $urlData     = [
+        $urlData          = [
             'name'   => '李勇',
             'mobile' => '18518178485',
             'certNo' => '362429199005072513',
         ];
         $url_info['data'] = json_encode(['data' => $urlData]);
-        $data = multiCurlPost([$url_info]);
+        $data             = multiCurlPost([$url_info]);
         P($data);
     }
 }

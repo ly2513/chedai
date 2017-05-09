@@ -242,7 +242,9 @@ class YP_Controller
         $tempFilePath = $this->tempPath . $tempFile;
         is_file($tempFilePath) or touch($tempFilePath);
         echo $this->twig->render($tempFile, $data);
-        //        die;
+        if(!YP_DEBUG){
+            die;
+        }
     }
 
     /**
