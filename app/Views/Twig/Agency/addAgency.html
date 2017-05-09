@@ -114,7 +114,7 @@
         </li>
         <li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>合作机构管理</span> </a>
             <ul>
-                <li><a href="addAgency">合作机构列表</a></li>
+                <li><a href="getAgency">合作机构列表</a></li>
                 <li><a href="index5.html">在库机构成员列表</a></li>
             </ul>
         </li>
@@ -186,7 +186,7 @@
                                 <label class="control-label"></label>
                                 <a type="submit" class="btn btn-success" style="margin-right:30px;" href="javascript:;"
                                    onclick="return add();"><i class="icon-ok"></i> 添加</a>
-                                <a href="/provider/providerList" class="btn btn-info"><i class="icon-repeat"></i> 取消并返回</a>
+                                <a href="/Agency/getAgency" class="btn btn-info"><i class="icon-repeat"></i> 取消并返回</a>
                             </div>
                         </form>
                     </div>
@@ -221,8 +221,6 @@
 
     // ******************************添加数据**********************
     var add = function () {
-
-
         var name = $("input[name='name']").val();
         var license_num = $("input[name='license_num']").val();
         var build_time = $("input[name='build_time']").val();
@@ -287,14 +285,21 @@
                 agency_id: agency_id
             },
             success: function (result) {
-                if (result.success) {
+                console.log(result);
+                if (result.code === 0) {
                     $().toastmessage('showSuccessToast', "添加成功");
                     setTimeout(function () {
                         window.location.href = '/Agency/getAgency';
                     }, 3000);
 
+                } else if (result.code === 1) {
+                    $.each(result.msg, function (i, n) {
+                        $().toastmessage('showErrorToast', n);
+                    });
+
                 } else {
-                    $().toastmessage('showErrorToast', result.errMessage);
+                    console.log(result);
+                    $().toastmessage('showErrorToast', result.msg);
                 }
             }
         })
@@ -304,55 +309,10 @@
 </script>
 
 
-<script src="/Static/js/excanvas.min.js"></script>
-
 <script src="/Static/js/jquery.ui.custom.js"></script>
 <script src="/Static/js/bootstrap.min.js"></script>
-<script src="/Static/js/jquery.flot.min.js"></script>
-<script src="/Static/js/jquery.flot.resize.min.js"></script>
-<script src="/Static/js/jquery.peity.min.js"></script>
-<script src="/Static/js/fullcalendar.min.js"></script>
 <script src="/Static/js/matrix.js"></script>
-<script src="/Static/js/matrix.dashboard.js"></script>
-<script src="/Static/js/jquery.gritter.min.js"></script>
-<script src="/Static/js/matrix.interface.js"></script>
-<script src="/Static/js/matrix.chat.js"></script>
-<script src="/Static/js/jquery.validate.js"></script>
-<script src="/Static/js/matrix.form_validation.js"></script>
-<script src="/Static/js/jquery.wizard.js"></script>
-<script src="/Static/js/jquery.uniform.js"></script>
-<script src="/Static/js/select2.min.js"></script>
-<script src="/Static/js/matrix.popover.js"></script>
-<script src="/Static/js/jquery.dataTables.min.js"></script>
-<script src="/Static/js/matrix.tables.js"></script>
-
-
 <script src="/Static/js/bootstrap-datepicker.js"></script>
 <script src="/Static/js/jquery.toastmessage.js"></script>
-
-<script type="text/javascript">
-    // This function is called from the pop-up menus to transfer to
-    // a different page. Ignore if the value returned is a null string:
-    function goPage(newURL) {
-
-        // if url is empty, skip the menu dividers and reset the menu selection to default
-        if (newURL != "") {
-
-            // if url is "-", it is this page -- reset the menu:
-            if (newURL == "-") {
-                resetMenu();
-            }
-            // else, send page to designated URL
-            else {
-                document.location.href = newURL;
-            }
-        }
-    }
-
-    // resets the menu selection upon entry to this page:
-    function resetMenu() {
-        document.gomenu.selector.selectedIndex = 2;
-    }
-</script>
 </body>
 </html>

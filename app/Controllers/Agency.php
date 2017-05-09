@@ -8,6 +8,7 @@
  */
 namespace App\Controllers;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
 use AgencyModel;
 
 /**
@@ -49,7 +50,19 @@ class  Agency extends Auth
      */
     public function getAgency()
     {
-
+        $data = AgencyModel::select([
+            'id',
+            'agency_id',
+            'name',
+            'license_num',
+            'register_money',
+            'build_time'
+        ])->get()->toArray();
+        foreach ($data as $key => $value) {
+            $data[$key]['build_time'] = date('Y-m-d', $value['build_time']);
+        }
+        $this->assign('data', $data);
+        $this->display();
     }
 
     /**
@@ -57,9 +70,7 @@ class  Agency extends Auth
      */
     public function addAgency()
     {
-        //        AgencyModel::
         $this->display();
-
     }
 
     /**
@@ -67,33 +78,100 @@ class  Agency extends Auth
      */
     public function add()
     {
-        //        P(file_get_contents('php://input'));
         // 开始校验
         if (!$this->validate($this->request, $this->rules, $this->message)) {
             // 校验失败,输出错误信息
             callBack(1, '', $this->errors);
         }
-        $addData                = $this->request->getPost();
+        $addData = $this->request->getPost();
+        //        $agencyData = AgencyModel::select('*')->whereName($addData['name'])->get()->first();
+        // 检测机构是否已存在
+        $agencyData = AgencyModel::select('*')->whereName($addData['name'])->get()->toArray();
+        if ($agencyData) {
+            callBack(2, '', '该机构已存在');
+        }
+        $addData['build_time']  = strtotime($addData['build_time']);
         $addData['create_time'] = time();
         $addData['update_time'] = time();
         $addData['create_by']   = 1;
         $addData['update_by']   = 1;
-        P($addData);
-        // 获得自增ID(机构ID)
+        // 获得自增ID(机构ID) 插入数据
         $id = AgencyModel::insertGetId($addData);
-//        $data = AgencyModel::select('*')->get()->toArray();
-        P($data);
-        P($id);
-    }
-
-    public function updateAgency()
-    {
+        if (!$id) {
+            callBack(3, '操作失败');
+        }
+        // 添加成功
+        callBack(0);
 
     }
 
-    public function deleteAgency()
+    /**
+     * 编辑机构
+     *
+     * @param $id
+     */
+    public function updateAgency($id)
     {
+        $data = AgencyModel::select([
+            'id',
+            'agency_id',
+            'name',
+            'license_num',
+            'register_money',
+            'build_time'
+        ])->whereId($id)->get()->toArray();
+        if (!$data) {
+            callBack(3, '', '无此机构');
+        }
+        $data[0]['build_time'] = date('Y-m-d', $data[0]['build_time']);;
+        $this->assign('data', $data[0]);
+        $this->display();
+    }
 
+    /**
+     * 执行编辑
+     */
+    public function update()
+    {
+        // 开始校验
+        if (!$this->validate($this->request, $this->rules, $this->message)) {
+            // 校验失败,输出错误信息
+            callBack(1, '', $this->errors);
+        }
+        $addData    = $this->request->getPost();
+        $agencyData = AgencyModel::select('*')->whereName($addData['name'])->where('id', '!=',
+            $addData['id'])->get()->toArray();
+        //        $sql = AgencyModel::select('*')->whereName($addData['name'])->where('id','!=',$addData['id'])->toSql();
+        if ($agencyData) {
+            callBack(2, '', '该机构已存在');
+        }
+        // 跟新的数据
+        $addData['build_time']  = strtotime($addData['build_time']);
+        $addData['update_time'] = time();
+        $addData['update_by']   = 1;
+        $status                 = AgencyModel::whereId($addData['id'])->update($addData);
+        if (!$status) {
+            callBack(3, '操作失败');
+        }
+        // 添加成功
+        callBack(0);
+    }
+
+    /**
+     * 删除机构
+     *
+     * @param $id
+     */
+    public function deleteAgency($id)
+    {
+        $addData['id']        = $id;
+        $addData['is_delete'] = 1;
+        $status               = AgencyModel::whereId($id)->update($addData);
+        if (!$status) {
+            callBack(3, '操作失败');
+        }
+        // 添加成功
+        callBack(0);
     }
 
 }
