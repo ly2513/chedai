@@ -1,0 +1,27 @@
+{
+    "name": "ly2513/ypwl",
+    "require": {
+        "php": "~7.1",
+        "illuminate/database": "*",
+        "justinrainbow/json-schema": "^5.2",
+        "twig/twig": "2.3.*",
+        "phpoffice/phpexcel": "1.8.*",
+        "kint-php/kint": "*",
+        "phpmailer/phpmailer": "*",
+        "doctrine/orm": "^2.5",
+        "symfony/yaml": "*",
+        "symfony/console": "~2.0"
+    },
+    "authors": [
+        {
+            "name": "liyong",
+            "email": "yong.li@szypwl.com"
+        }
+    ],
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}
