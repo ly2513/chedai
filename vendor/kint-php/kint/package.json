@@ -1,0 +1,31 @@
+{
+  "name": "kint",
+  "version": "2.0.0",
+  "description": "Kint - debugging helper for PHP developers",
+  "contributors": [
+    {
+      "name": "Jonathan Vollebregt",
+      "url": "https://github.com/jnvsor",
+      "email": "jnvsor@gmail.com"
+    },
+    {
+      "name": "Rokas Šleinius",
+      "url": "https://github.com/raveren",
+      "email": "raveren@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-standard": "7.1.0",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "2.3.1",
+    "globstar": "1.0.0",
+    "uglify-js": "2.8.22"
+  },
+  "scripts": {
+    "format:js": "globstar -- eslint --fix \"resources/js/**/*.js\"",
+    "build:js": "find resources/js/ -name '*.js' | while read f; do uglifyjs \"$f\" -cmv --lint > \"resources/compiled/${f#resources/js/}\" || exit 1; done"
+  }
+}
