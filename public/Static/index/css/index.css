@@ -1,0 +1,323 @@
+/**首页**/
+.header {
+	min-width: 1360px;
+	width: 100%;
+	height: 78px;
+	background-color: #202a3e;
+	font-size: 18px;
+	color: white;
+}
+.header-cnt {
+	min-width: 1293px;
+	margin: 0 32px;
+	background-color: #202a3e;
+}
+.logo {
+	float: left;
+	margin-top: 20px;
+	margin-left: 36px;
+}
+.nav {
+	height: 78px;
+	float: left;
+	margin-left: 125px;
+	width: 65%;
+}
+.nav li {
+	height: 78px;
+	line-height: 78px;
+	float: left;
+	margin-right: 8%;
+}
+.nav li a {
+	color: white!important;
+}
+.my-info {
+	height: 78px;
+	line-height: 78px;
+	float: right;
+	margin-right: 46px;
+	position: relative;
+}
+.my-info i {
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	background: url("../images/user.png") no-repeat;
+	background-size: 100%;
+	margin-right: 12px;
+	vertical-align: middle;
+}
+.my-info span {
+	margin-right: 25px;
+}
+.my-info:before {
+	content: "";
+	width:0; 
+    height:0; 
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-top:10px solid #ffffff;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.my-info .info-f {
+	display: none;
+	background-color: #f8f8f8;
+	position: absolute;
+	top: 65px;
+	width: 98px;
+	border-radius: 3px;
+	behavior:url("css/ie-css3.htc");
+	left: 27px;
+    z-index: 9;
+}
+.my-info .info-f:before {
+	content: "";
+	width:0; 
+    height:0; 
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-bottom:11px solid #f8f8f8;
+	position: absolute;
+    top: -9px;
+    left: 17px;
+}
+.my-info .info-f a {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+    height: 36px;
+    line-height: 36px;
+}
+.index-banner {
+	min-width: 1360px;
+	width: 100%;
+	position: relative;
+	margin-bottom: 50px;
+}
+.index-banner img {
+	width: 100%;
+}
+.clear {
+	clear: both;
+}
+.banner-des {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	color: white;
+	width: 520px;
+	height: 160px;
+    text-align: center;
+}
+.banner-des h1 {
+	font-size: 65px;
+}
+.banner-des p {
+	font-size: 47px;
+}
+
+.column {
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+}
+.color-1 {
+	background-color: #202a3e;
+}
+.color-2 {
+	background-color: #d9be91;
+}
+.index-claims-search {
+	font-size: 16px;
+	float: left;
+	width: 206px;
+	background-color: white;
+}
+.index-claims-list {
+    margin-left: 226px;
+	background-color: white;
+	height: 353px;
+}
+.claims-form-cnt {
+	margin: 0 18px 18px;
+}
+.claims-form-cnt span {
+	display: block;
+}
+.claims-form-cnt input {
+	width: 100%;
+	height: 23px;
+	border: 1px solid #dedede;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    behavior: url("css/ie-css3.htc");
+    margin-top: 5px;
+    text-indent: 10px;
+}
+.car-area {
+	width: 66px;
+	height: 23px;
+	border: 1px solid #dedede;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    behavior: url("css/ie-css3.htc");
+}
+.car-number {
+	width: 56%!important;
+}
+.claims-form-cnt div {
+	margin-top: 12px;
+}
+.claims-btn {
+	text-align: center;
+}
+.claims-btn .btn {
+	width: 123px;
+	line-height: 25px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    behavior: url("css/ie-css3.htc");
+    color: white;
+    border: none;
+    outline: none;
+}
+
+.index-claims-list thead {
+	border-bottom: 1px solid #dedede;
+}
+.index-claims-list table {
+	width: 100%;
+	text-align: center;
+}
+.index-claims-list table tr {
+    height: 42px;
+    line-height: 42px;
+}
+.index-claims-add {
+	margin-top: 35px;
+	padding-bottom: 50px;
+	background-color: white;
+}
+.claims-add-info {
+	margin: 0 48px;
+	margin-top: 40px;
+	overflow: hidden;
+}
+.claims-add-info div {
+	float: left;
+    width: 25%;
+}
+.claims-add-info label{
+	margin-right: 8px;
+}
+.claims-add-info input {
+	width: 48%;
+	height: 23px;
+	border: 1px solid #dedede;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    behavior: url("css/ie-css3.htc");
+    text-indent: 10px;
+}
+.claims-add-info .name,.claims-add-info select {
+	width: 48%;
+	height: 23px;
+}
+.car-number-add select {
+	width: 77px!important;
+	height: 23px;
+}
+.car-number-add input {
+	width: 120px;
+    margin-left: 5px;
+}
+.claims-add-btn {
+	text-align: center;
+	margin-top: 45px;
+}
+.claims-add-btn .btn {
+	width: 120px;
+	line-height: 25px; 
+	color: white;
+    border: none;
+    outline: none;
+}
+.index-cnt {
+	margin-bottom: 128px;
+}
+.tc {
+	display: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+.bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color:#000;
+    filter:alpha(opacity=20);
+    z-index: 88;
+	filter: alpha(opacity=40);
+	opacity:0.4;
+}
+.tc .info {
+	font-size: 18px;
+	width: 364px;
+	height: 463px;
+	position: fixed;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: white;
+	z-index: 99;
+	padding: 0 30px;
+	box-sizing: border-box;
+}
+.tc .info-head {
+	text-align: center;
+	margin-top: 35px;
+	margin-bottom: 25px;
+}
+.tc .info span {
+	color: #9c9c9c;
+	display: inline-block;
+    width: 110px;
+}
+.tc .info  p {
+	height: 40px;
+}
+.tc .info .close {
+	width: 25px;
+	height: 25px;
+	background: url("../images/close.png") no-repeat;
+	position: absolute;
+    top: 5px;
+    right: 4px
+}
+.tc .info .close {
+	cursor: pointer;
+}

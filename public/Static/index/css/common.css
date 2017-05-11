@@ -1,0 +1,20 @@
+input,select,button {
+	border: 1px solid #dedede;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    behavior: url("css/ie-css3.htc");
+}
+body {
+	background-color: #f6f5f5;
+	height: 100%;
+	position:relative;
+}
+a:hover {
+	cursor: pointer;
+}
+.container {
+	min-width: 1293px;
+	margin: 0 32px;
+}
