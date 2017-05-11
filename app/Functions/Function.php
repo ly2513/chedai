@@ -30,7 +30,6 @@ if (!function_exists('callBack')) {
 
     }
 }
-
 /**
  * 设置分页
  *
@@ -102,25 +101,26 @@ function multiCurlPost($url_array, $wait_usec = 0)
         curl_setopt($ch, CURLOPT_POSTFIELDS, $url_info['data']);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($url_info['data'])
-            ]);
-        curl_multi_add_handle($mh, $ch); // 把 curl resource 放进 multi curl handler 里
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($url_info['data'])
+        ]);
+        // 把 curl resource 放进 multi curl handler 里
+        curl_multi_add_handle($mh, $ch);
         $handle[$i++] = $ch;
     }
-    /* 执行 */
+    // 执行
     do {
         curl_multi_exec($mh, $running);
-        if ($wait_usec > 0) { /* 每个 connect 要间隔多久 */
+        if ($wait_usec > 0) { // 每个 connect 要间隔多久
             usleep($wait_usec); // 250000 = 0.25 sec
         }
     } while ($running > 0);
-    /* 读取资料 */
+    // 读取资料
     foreach ($handle as $i => $ch) {
         $content  = curl_multi_getcontent($ch);
         $data[$i] = (curl_errno($ch) == 0) ? $content : false;
     }
-    /* 移除 handle*/
+    // 移除 handle
     foreach ($handle as $ch) {
         curl_multi_remove_handle($mh, $ch);
     }
@@ -129,3 +129,36 @@ function multiCurlPost($url_array, $wait_usec = 0)
     return $data;
 }
 
+/**
+ * 生成随机字符串
+ *
+ * @param $length
+ *
+ * @return string
+ */
+function random($length)
+{
+    $hash  = '';
+    $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
+    $max   = strlen($chars) - 1;
+    PHP_VERSION < '4.2.0' && mt_srand((double)microtime() * 1000000);
+    for ($i = 0; $i < $length; $i++) {
+        $hash .= $chars[mt_rand(0, $max)];
+    }
+
+    return $hash;
+}
+
+/**
+ * 获取指定长度的随机密码
+ *
+ * @param int $length
+ *
+ * @return string
+ */
+function getPassword($length = 6)
+{
+    $str = substr(md5(time()), 0, $length);
+
+    return $str;
+}

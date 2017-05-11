@@ -6,9 +6,8 @@
  * Email: yong.li@szypwl.com
  * Copyright: 深圳优品未来科技有限公司
  */
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
 use AgencyModel;
 
 /**
@@ -123,7 +122,7 @@ class  Agency extends Auth
         if (!$data) {
             callBack(3, '', '无此机构');
         }
-        $data[0]['build_time'] = date('Y-m-d', $data[0]['build_time']);;
+        $data[0]['build_time'] = date('Y-m-d', $data[0]['build_time']);
         $this->assign('data', $data[0]);
         $this->display();
     }

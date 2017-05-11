@@ -143,6 +143,9 @@ class YP
         $this->bootstrapEnvironment();
         // 加载环境变量
         // $this->loadEnvironment();
+        // 开启session
+        $session = \Config\Services::session();
+        $session->start();
         if (YP_DEBUG) {
             // require_once SYSTRM_PATH . 'ThirdParty/Kint/Kint.class.php';
         }
@@ -168,21 +171,21 @@ class YP
         $this->displayCache($cacheConfig);
         // 用不同的方法去修改请求对象
         $this->spoofRequestMethod();
-        try {
+//        try {
             // 处理请求
             $this->handleRequest($routes, $cacheConfig);
-        } catch (\Exception $e) {
-            // 日志记录异常错误
-            $logger = Config\Services::log();
-            $logger->info('REDIRECTED ROUTE at ' . $e->getMessage());
-            // 如果该路由是重定向路由，则以$to作为消息抛出异常
-            $this->response->redirect($e->getMessage(), 'auto', $e->getCode());
-            $this->callExit(EXIT_SUCCESS);
-        } catch (\Exception $e) {// 捕获响应的重定向错误
-            $this->callExit(EXIT_SUCCESS);
-        } catch (\RuntimeException $e) {
-            $this->display404errors($e);
-        }
+//        } catch (\Exception $e) {
+//            // 日志记录异常错误
+//            $logger = Config\Services::log();
+//            $logger->info('REDIRECTED ROUTE at ' . $e->getMessage());
+//            // 如果该路由是重定向路由，则以$to作为消息抛出异常
+//            $this->response->redirect($e->getMessage(), 'auto', $e->getCode());
+//            $this->callExit(EXIT_SUCCESS);
+//        } catch (\Exception $e) {// 捕获响应的重定向错误
+//            $this->callExit(EXIT_SUCCESS);
+//        } catch (\RuntimeException $e) {
+//            $this->display404errors($e);
+//        }
     }
 
     /**
@@ -394,6 +397,7 @@ class YP
                 throw new \RuntimeException('Controller is empty.');
             } else {
                 // 尝试自动加载当前这个类
+                P($this->controller);
                 if (!class_exists($this->controller, true) || $this->method[0] === '_') {
                     throw new \RuntimeException('Controller or its method is not found.');
                 } else if (!method_exists($this->controller, '_remap') && !is_callable([

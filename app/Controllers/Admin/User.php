@@ -16,6 +16,12 @@ use YP\Libraries\YP_Pagination as Pagination;
 class User extends Controller
 {
 
+    public function getUser()
+    {
+        $this->display();
+    }
+
+
     public function addSession()
     {
         $session = Services::session();
