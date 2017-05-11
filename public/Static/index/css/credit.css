@@ -1,0 +1,32 @@
+.credit-query {
+	margin-top: 40px;
+	background-color: white;
+	padding-bottom: 63px;
+}
+.credit-query-res {
+	margin-top: 60px;
+	background-color: white;
+}
+.credit-query-input {
+    width: 100%;
+    overflow: hidden;
+}
+.credit-query-input>div {
+	width: 33.3%;
+    text-align: center;
+	float: left;
+	font-size: 16px;
+}
+.credit-query-input label {
+	margin-right: 8px;
+}
+.credit-query-input input {
+	height: 23px;
+}
+.column {
+	margin-bottom: 63px;
+}
+.credit-query-btn {
+	text-align: center;
+	margin-top: 90px;
+}

@@ -1,0 +1,65 @@
+.blacklist-tab a {
+	display: inline-block;
+	height: 42px;
+	line-height: 42px;
+	width: 167px;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    behavior: url("css/ie-css3.htc");
+    margin: 30px 35px 30px 0;
+}
+.bad-customer {
+	background-color: white;
+}
+.bad-customer table {
+	width: 100%;
+	text-align: center;
+}
+.bad-customer thead {
+    height: 54px;
+    background-color: #d9be91;
+    color: white;
+}
+.bad-customer table tr {
+    height: 54px;
+    line-height: 54px;
+}
+.black-itd {
+	display: none;
+}
+.itd {
+	font-size: 0;;
+	margin-left: 2.6%;
+}
+.itd li {
+	width: 14%;
+	background-color: white;
+	display: inline-block;
+	text-align: center;
+	margin-right: 2.6%;
+	margin-bottom: 24px;
+    padding-bottom: 18px;
+}
+.itd li div {
+    width: 60%;
+    display: inline-block;    
+}
+.itd li img {
+	width: 100%;
+	margin-top: 24px;
+	overflow: hidden;
+}
+.itd  li span {
+	display: block;
+	font-size: 16px;
+	margin-top: 20px;
+    margin-bottom: 5px;
+}
+.itd  li p {
+	font-size: 14px;
+}
