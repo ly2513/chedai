@@ -3,5 +3,6 @@ vendor/
 composer.lock
 !cache
 cache/Twig/
+cache/Session/
 app/Views/Twig/
 .DS_Store

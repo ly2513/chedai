@@ -59,4 +59,46 @@ class Login extends Auth
         // 登录成功
         callBack(0);
     }
+
+    /**
+     * 修改密码
+     */
+    public function changePassword()
+    {
+        $data = $this->request->getPost();
+        if (!isset($_SESSION['pid'])) {
+            callBack(2, '', '请登入后在修改密码!');
+        }
+        $agencyInfo = AgencyUserModel::select('*')->whereId($_SESSION['pid']['id'])->get()->toArray();
+        if (!$agencyInfo) {
+            callBack(2, '', '用户不存在!');
+        }
+        // 验证密码
+        if (!password_verify(md5($data['old_password']), $agencyInfo[0]['password'])) {
+            callBack(2, '', '原密码错误!');
+        }
+        // 验证两次输入的新密码是否一致
+        if ($data['new_password'] !== $data['re_new_password']) {
+            callBack(2, '', '两次输入的新密码不一致!');
+        }
+        $updateData['password'] = password_hash(md5($data['new_password']), PASSWORD_DEFAULT);
+        unset($data);
+        // 修改
+        $status = AgencyUserModel::whereId($_SESSION['pid']['id'])->update($updateData);
+        if (!$status) {
+            callBack(2, '', '修改密码失败!');
+        }
+        callBack(0);
+
+    }
+
+    /**
+     * 退出
+     */
+    public function out()
+    {
+        $session = Services::session();
+        $session->destroy();
+        callBack(0);
+    }
 }

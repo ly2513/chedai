@@ -15,6 +15,257 @@ a:hover {
 	cursor: pointer;
 }
 .container {
+	min-width: 1294px;
+	margin: 0 32px;
+}
+.column {
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+}
+.color-1 {
+	background-color: #202a3e;
+}
+.color-2 {
+	background-color: #d9be91;
+}
+.color-3 {
+	background-color: #d0d0d0;
+}
+
+
+/**导航**/
+/**首页**/
+.header {
+	min-width: 1360px;
+	width: 100%;
+	height: 78px;
+	background-color: #202a3e;
+	font-size: 18px;
+	color: white;
+}
+.header-cnt {
 	min-width: 1293px;
 	margin: 0 32px;
+	background-color: #202a3e;
+}
+.logo {
+	float: left;
+	margin-top: 20px;
+	margin-left: 36px;
+}
+.nav {
+	height: 78px;
+	float: left;
+	margin-left: 125px;
+	width: 65%;
+}
+.nav li {
+	height: 78px;
+	line-height: 78px;
+	float: left;
+	margin-right: 8%;
+}
+.nav li a {
+	color: white!important;
+}
+.my-info {
+	height: 78px;
+	line-height: 78px;
+	float: right;
+	margin-right: 46px;
+	position: relative;
+}
+.my-info i {
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	background: url("../images/user.png") no-repeat;
+	background-size: 100%;
+	margin-right: 12px;
+	vertical-align: middle;
+}
+.my-info span {
+	margin-right: 25px;
+}
+.my-info:before {
+	content: "";
+	width:0; 
+    height:0; 
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-top:10px solid #ffffff;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.my-info .info-f {
+	display: none;
+	background-color: #f8f8f8;
+	position: absolute;
+	top: 65px;
+	width: 98px;
+	border-radius: 3px;
+	behavior:url("css/ie-css3.htc");
+	left: 27px;
+    z-index: 9;
+}
+.my-info .info-f:before {
+	content: "";
+	width:0; 
+    height:0; 
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-bottom:11px solid #f8f8f8;
+	position: absolute;
+    top: -9px;
+    left: 17px;
+}
+.my-info .info-f a {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.tc,.b-tc {
+	display: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+.bg,.b-tc .bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color:#000;
+    filter:alpha(opacity=20);
+    z-index: 88;
+	filter: alpha(opacity=40);
+	opacity:0.4;
+}
+.tc .info {
+	font-size: 18px;
+	width: 364px;
+	height: 463px;
+	position: fixed;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: white;
+	z-index: 99;
+	padding: 0 30px;
+	box-sizing: border-box;
+}
+.tc .info-head {
+	text-align: center;
+	margin-top: 35px;
+	margin-bottom: 25px;
+}
+.tc .info span {
+	color: #9c9c9c;
+	display: inline-block;
+    width: 110px;
+}
+.tc .info  p {
+	height: 40px;
+}
+.tc .info .close,.modify-pwd i {
+	width: 25px;
+	height: 25px;
+	background: url("../images/close.png") no-repeat;
+	position: absolute;
+    top: 5px;
+    right: 4px
+}
+.tc .info .close {
+	cursor: pointer;
+}
+.modify-pwd {
+    font-size: 18px;
+	width: 330px;
+    height: 352px;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    z-index: 99;
+}
+.modify-input {
+	width: 238px;
+    margin: 50px auto 0;
+}
+.modify-input div {
+	margin-bottom: 30px;
+}
+.modify-input label {
+	margin-right: 5px;
+}
+.modify-input input {
+	height: 23px;
+	line-height: 23px;
+    text-indent: 10px;
+}
+.modify-input .tj-btn {
+	text-align: center;
+}
+.modify-input a {
+	display: inline-block;
+    width: 86px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    position: relative;
+    behavior: url("css/ie-css3.htc");
+    background-color: #202a3e;
+    font-size: 16px;
+    color: white;
+}
+
+
+/**分页**/
+.page {
+	text-align: center;
+}
+.page .pagination {
+	display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.pagination>li {
+    display: inline;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #d9be91;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.table-cnt {
+	background-color: white;
+}
+.e-hidden {
+	display: none;
 }

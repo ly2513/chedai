@@ -145,6 +145,69 @@ class Home extends Auth
     }
 
     /**
+     * 获得债权信息
+     *
+     * @param $id
+     */
+    public function getCreditById($id)
+    {
+        $data = CreditorRightModel::select([
+            'id',
+            'name',
+            'card_id',
+            'car_id',
+            'phone',
+            'money',
+            'loan_time',
+            'method',
+            'status'
+        ])->whereId($id)->whereCreateBy(1)->get()->toArray();
+        foreach ($data as $key => $value) {
+            $data[$key]['province']  = mb_substr($value['car_id'], 0, 1);
+            $data[$key]['city']      = mb_substr($value['car_id'], 1, 1);
+            $data[$key]['car_id']    = mb_substr($value['car_id'], -5);
+            $data[$key]['loan_time'] = date('Y-m-d', $value['loan_time']);
+        }
+        $data = $data ? $data[0] : [];
+        callBack(0, $data);
+    }
+
+    /**
+     * 保存债权信息
+     *
+     */
+    public function update()
+    {
+        $addData                = $this->request->getPost();
+        $addData['car_id']      = $addData['province'] . $addData['city'] . $addData['car_id'];
+        $addData['loan_time']   = strtotime($addData['loan_time']);
+        $addData['update_time'] = time();
+        $addData['create_by']   = $_SESSION['uid'] ?? 1;
+        unset($addData['province'], $addData['city']);
+        // 保存数据
+        $id = CreditorRightModel::whereId($addData['id'])->update($addData);
+        if (!$id) {
+            callBack(2, '', '保存失败!');
+        }
+        callBack(0);
+    }
+
+    /**
+     * 删除债权
+     *
+     * @param $id
+     */
+    public function delete($id)
+    {
+        $updateData['is_delete'] = 1;
+        $status = CreditorRightModel::whereId($id)->update($updateData);
+        if(!$status){
+            callBack(2, '', '删除失败!');
+        }
+        callBack(0);
+    }
+
+    /**
      * 征信查询
      */
     public function searchCredit()
@@ -181,7 +244,6 @@ class Home extends Auth
                 'car_id',
                 'agency'
             ])->get()->toArray();
-
         }
         callBack(0, $blacklist);
     }
@@ -205,6 +267,7 @@ class Home extends Auth
         $type = $type ? $type : 2;
         if ($type == 2) {
             $data = CreditorRightModel::select([
+                'id',
                 'name',
                 'card_id',
                 'car_id',
@@ -220,7 +283,11 @@ class Home extends Auth
                 $data[$key]['loan_time'] = date('Y-m-d', $value['loan_time']);
             }
         } else {
-            $data = CustomerModel::select(['name','card_id','car_id','phone'])->get()->toArray();
+            $build = CustomerModel::select(['name', 'card_id', 'car_id', 'phone']);
+            if($this->request->getPost('name')){
+                $build->whereName($this->request->getPost('name'));
+            }
+            $data = $build->get()->toArray();
         }
         callBack(0, $data);
     }

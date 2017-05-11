@@ -397,7 +397,6 @@ class YP
                 throw new \RuntimeException('Controller is empty.');
             } else {
                 // 尝试自动加载当前这个类
-                P($this->controller);
                 if (!class_exists($this->controller, true) || $this->method[0] === '_') {
                     throw new \RuntimeException('Controller or its method is not found.');
                 } else if (!method_exists($this->controller, '_remap') && !is_callable([
