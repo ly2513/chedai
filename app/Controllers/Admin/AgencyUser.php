@@ -47,7 +47,7 @@ class AgencyUser extends Auth
     public function getAgencyUser()
     {
         $pagination  = new Pagination();
-        $url         = '/AgencyUser/getAgencyUser';
+        $url         = '/Admin/AgencyUser/getAgencyUser';
         $uri_segment = 3;
         $name        = $this->request->getGet('name') ? $this->request->getGet('name') : '';
         $build       = AgencyUserModel::select('*');
