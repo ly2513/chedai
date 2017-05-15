@@ -6,3 +6,4 @@ cache/Twig/
 cache/Session/
 app/Views/Twig/
 .DS_Store
+public/Upload/*
