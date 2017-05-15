@@ -84,6 +84,8 @@ class AgencyUser extends Auth
     public function addAgencyUser()
     {
         $agencyData = $this->getAgencyList();
+        $url = 'http://' . $_SERVER["HTTP_HOST"] . '/Admin/AgencyUser/uploadImg';
+        $this->assign('upload_url', $url);
         $this->assign('data', $agencyData);
         $this->display();
     }
@@ -144,6 +146,8 @@ class AgencyUser extends Auth
             callBack(3, '', '无此成员');
         }
         $agencyData = $this->getAgencyList();
+        $url = 'http://' . $_SERVER["HTTP_HOST"] . '/Admin/AgencyUser/uploadImg';
+        $this->assign('upload_url', $url);
         $this->assign('agencyData', $agencyData);
         $this->assign('data', $data[0]);
         $this->display();
@@ -160,7 +164,7 @@ class AgencyUser extends Auth
             // 校验失败,输出错误信息
             callBack(1, '', $this->errors);
         }
-        $addData    = $this->request->getPost();
+        $addData = $this->request->getPost();
         // 该手机号已注册
         $agencyData = AgencyUserModel::select('*')->wherePhone($addData['phone'])->where('id', '!=',
             $addData['id'])->get()->toArray();
@@ -278,8 +282,9 @@ class AgencyUser extends Auth
      */
     public function uploadImg()
     {
+        $subDir = date('Y/m/d', time());
         // 上传目录
-        $uploadDir = FRONT_PATH . 'Upload/' . date('Y/m/d', time());
+        $uploadDir = FRONT_PATH . 'Static/Upload/' . $subDir;
         // 获得后缀信息
         $file   = pathinfo($_FILES['file']['name']);
         $upload = new \YP\Libraries\YP_Upload($_FILES['file']['tmp_name'], time() . '.' . $file['extension']);
@@ -291,7 +296,7 @@ class AgencyUser extends Auth
             callBack($upload->getError(), '', '上传失败');
         }
         // 返回上传的图片路径
-        callBack(0, 'Upload/' . $name);
+        callBack(0, 'Static/Upload/' . $subDir . '/'. $name);
     }
 
 }

@@ -193,7 +193,7 @@ class App extends Config
      *
      * @var string
      */
-    public $errorViewPath = APP_PATH . 'Views/errors';
+    public $errorViewPath = APP_PATH . 'Views/Errors';
 
     /**
      * 加密秘钥

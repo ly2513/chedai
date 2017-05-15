@@ -166,6 +166,10 @@ a:hover {
 	z-index: 99;
 	padding: 0 30px;
 	box-sizing: border-box;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        behavior: url("css/ie-css3.htc");
 }
 .tc .info-head {
 	text-align: center;
@@ -178,7 +182,10 @@ a:hover {
     width: 110px;
 }
 .tc .info  p {
-	height: 40px;
+    height: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .tc .info .close,.modify-pwd i {
 	width: 25px;
@@ -203,6 +210,10 @@ a:hover {
     left: 0;
     background-color: white;
     z-index: 99;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url("css/ie-css3.htc");
 }
 .modify-input {
 	width: 238px;

@@ -11,7 +11,7 @@ namespace App\Controllers\Index;
 use AgencyUserModel;
 use Config\Services;
 
-class Login extends Auth
+class Login extends \YP\Core\YP_Controller
 {
     /**
      *  构造函数

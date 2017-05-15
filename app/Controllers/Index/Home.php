@@ -200,8 +200,8 @@ class Home extends Auth
     public function delete($id)
     {
         $updateData['is_delete'] = 1;
-        $status = CreditorRightModel::whereId($id)->update($updateData);
-        if(!$status){
+        $status                  = CreditorRightModel::whereId($id)->update($updateData);
+        if (!$status) {
             callBack(2, '', '删除失败!');
         }
         callBack(0);
@@ -249,6 +249,15 @@ class Home extends Auth
     }
 
     /**
+     * 车辆评估
+     */
+    public function carAssessment()
+    {
+        $this->assign('userInfo', $_SESSION['pid']);
+        $this->display();
+    }
+
+    /**
      * 业务管理
      */
     public function business()
@@ -284,12 +293,21 @@ class Home extends Auth
             }
         } else {
             $build = CustomerModel::select(['name', 'card_id', 'car_id', 'phone']);
-            if($this->request->getPost('name')){
+            if ($this->request->getPost('name')) {
                 $build->whereName($this->request->getPost('name'));
             }
             $data = $build->get()->toArray();
         }
         callBack(0, $data);
+    }
+
+    /**
+     * 催收管理
+     */
+    public function collection()
+    {
+        $this->assign('userInfo', $_SESSION['pid']);
+        $this->display();
     }
 
     /**

@@ -11,4 +11,12 @@
 class CreditorRightModel extends \YP\Core\YP_Model
 {
     protected $table = 'cd_creditor_rights';
+
+    /**
+     * 定义操作人员与机构一对一关系
+     * @return type
+     */
+    public function getAgency() {
+        return $this->hasOne('AgencyUserModel', 'id', 'create_by');
+    }
 }
